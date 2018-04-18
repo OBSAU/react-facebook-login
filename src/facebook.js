@@ -68,8 +68,7 @@ class FacebookLogin extends React.Component {
       this.sdkLoaded();
       return;
     }
-    this.setFbAsyncInit();
-    this.loadSdkAsynchronously();
+    this.setFbAsyncInit(this.loadSdkAsynchronously);
     let fbRoot = document.getElementById('fb-root');
     if (!fbRoot) {
       fbRoot = document.createElement('div');
@@ -93,7 +92,7 @@ class FacebookLogin extends React.Component {
     }
   }
 
-  setFbAsyncInit() {
+  setFbAsyncInit(callback) {
     const { appId, xfbml, cookie, version, autoLoad, state } = this.props;
     window.fbAsyncInit = () => {
       window.FB.init({
@@ -107,14 +106,15 @@ class FacebookLogin extends React.Component {
         window.FB.getLoginStatus(this.checkLoginAfterRefresh);
       }
     };
+    callback(this.props);
   }
 
   sdkLoaded() {
     this.setState({ isSdkLoaded: true });
   }
 
-  loadSdkAsynchronously() {
-    const { language } = this.props;
+  loadSdkAsynchronously(props) {
+    const { language } = props;
     ((d, s, id) => {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
