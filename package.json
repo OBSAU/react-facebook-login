@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/keppelen/react-facebook-login/issues"
   },
-  "homepage": "https://github.com/keppelen/react-facebook-login",
+  "homepage": "https://github.com/OBSAU/react-facebook-login.git",
   "devDependencies": {
     "autoprefixer": "^6.0.3",
     "babel": "^6.5.2",
